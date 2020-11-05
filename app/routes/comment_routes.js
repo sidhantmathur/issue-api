@@ -50,4 +50,23 @@ router.delete('/comments/:id', requireToken, (req, res, next) => {
     .catch(next)
 })
 
+// Update Comment on Issue
+router.patch('/comments/:id', requireToken, (req, res, next) => {
+  const commentId = req.params.id
+  const commentData = req.body.comment
+  const issueId = commentData.issueId
+
+  Issue.findById(issueId)
+    .then(handle404)
+    .then(issue => {
+      requireOwnership(req, issue)
+      const comment = issue.comments.id(commentId)
+      comment.set(commentData)
+
+      return issue.save()
+    })
+    .then(() => res.sendStatus(204))
+    .catch(next)
+})
+
 module.exports = router
