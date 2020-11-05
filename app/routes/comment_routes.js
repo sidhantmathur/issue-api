@@ -34,8 +34,8 @@ router.post('/comments', requireToken, (req, res, next) => {
 })
 
 // Delete Comment on Issue
-router.delete('/comment/:id', requireToken, (req, res, next) => {
-  const commentId = req.params.commentId
+router.delete('/comments/:id', requireToken, (req, res, next) => {
+  const commentId = req.params.id
   const issueId = req.body.comment.issueId
 
   Issue.findById(issueId)
