@@ -3,13 +3,16 @@
 // requiring the mongoose library
 const mongoose = require('mongoose')
 
-// Create schema contstructor
-const Schema = mongoose.Schema
-
-const commentSchema = new Schema({
-  title: String,
-  body: String,
-  owner: { type: Schema.Types.ObjectId, ref: 'User' }
+const commentSchema = new mongoose.Schema({
+  text: {
+    type: String,
+    required: true
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
 }, {
   timestamps: true
 })
