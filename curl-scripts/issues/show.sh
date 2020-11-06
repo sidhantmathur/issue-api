@@ -6,6 +6,6 @@ URL_PATH="/issues"
 curl "${API}${URL_PATH}/${ID}" \
   --include \
   --request GET \
-  --header "Authorization: Bearer ${TOKEN}"
+  # --header "Authorization: Bearer ${TOKEN}"
 
 echo

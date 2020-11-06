@@ -36,7 +36,7 @@ router.delete('/issues/:id', requireToken, (req, res, next) => {
     .catch(next)
 })
 // Show all Issues
-router.get('/issues', requireToken, (req, res, next) => {
+router.get('/issues', (req, res, next) => {
   Issue.find()
     .then(issues => {
       return issues.map(issue => issue.toObject())
@@ -46,7 +46,7 @@ router.get('/issues', requireToken, (req, res, next) => {
 })
 
 // Show one Issue
-router.get('/issues/:id', requireToken, (req, res, next) => {
+router.get('/issues/:id', (req, res, next) => {
   Issue.findById(req.params.id)
     .then(handle404)
     .then(issue => res.status(200).json({ issue: issue.toObject() }))
