@@ -16,6 +16,9 @@ const issueSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  // tag: {
+  //   type: Number
+  // },
   comments: [commentSchema]
 }, {
   timestamps: true
