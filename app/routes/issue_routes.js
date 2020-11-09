@@ -71,7 +71,7 @@ router.patch('/issues/:id', requireToken, removeBlanks, (req, res, next) => {
 
 // Show User's Issues
 router.get('/issues-user', requireToken, (req, res, next) => {
-  console.log(req.user)
+  // console.log(req.user)
   Issue.find({'owner': req.user.id})
     .then(handle404)
     .then(issues => {
@@ -81,7 +81,7 @@ router.get('/issues-user', requireToken, (req, res, next) => {
       })
     })
     .then(issues => {
-      console.log(issues)
+      // console.log(issues)
       res.status(200).json({ issues: issues })
     })
     .catch(next)
