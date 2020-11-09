@@ -24,6 +24,7 @@ router.post('/issues', requireToken, (req, res, next) => {
     })
     .catch(next)
 })
+
 // Delete Issue
 router.delete('/issues/:id', requireToken, (req, res, next) => {
   Issue.findById(req.params.id)
@@ -35,6 +36,7 @@ router.delete('/issues/:id', requireToken, (req, res, next) => {
     .then(() => res.sendStatus(204))
     .catch(next)
 })
+
 // Show all Issues
 router.get('/issues', (req, res, next) => {
   Issue.find()
@@ -44,17 +46,6 @@ router.get('/issues', (req, res, next) => {
     .then(issues => res.status(200).json({ issues: issues }))
     .catch(next)
 })
-
-// Show all issues by current user
-// router.get('/user', requireOwnership, (req, res, next) => {
-//   Issue.find({owner: req.user.id})// .exec()
-//     .then(issues => {
-//       return issues.map(issue => issue.title).sort().toObject()
-//       // return issues.map(issue => issue.toObject())
-//     })
-//     .then(issues => res.status(200).json({ issues: issues }))
-//     .catch(next)
-// })
 
 // Show one Issue
 router.get('/issues/:id', (req, res, next) => {
@@ -78,28 +69,7 @@ router.patch('/issues/:id', requireToken, removeBlanks, (req, res, next) => {
     .catch(next)
 })
 
-// // examples update -> show from user
-// router.patch('/issues/:id', requireToken, removeBlanks, (req, res, next) => {
-//   // if the client attempts to change the `owner` property by including a new
-//   // owner, prevent that by deleting that key/value pair
-//   delete req.body.issues.owner
-
-//   Issue.findById(req.params.id)
-//     .then(handle404)
-//     .then(example => {
-//       // pass the `req` object and the Mongoose record to `requireOwnership`
-//       // it will throw an error if the current user isn't the owner
-//       requireOwnership(req, example)
-
-//       // pass the result of Mongoose's `.update` to the next `.then`
-//       return example.updateOne(req.body.example)
-//     })
-//     // if that succeeded, return 204 and no JSON
-//     .then(() => res.sendStatus(204))
-//     // if an error occurs, pass it to the handler
-//     .catch(next)
-// })
-
+// Show User's Issues
 router.get('/issues-user', requireToken, (req, res, next) => {
   console.log(req.user)
   Issue.find({'owner': req.user.id})
@@ -116,16 +86,5 @@ router.get('/issues-user', requireToken, (req, res, next) => {
     })
     .catch(next)
 })
-
-// router.get('/issues/:owner', requireToken, (req, res, next) => {
-//   req.body.issues.owner = req.params.owner
-//   Issue.find({owner: req.body.owner})
-//     .then(issues => {
-//       requireOwnership(req, issues)
-//       return issues.map(issue => issue.toObject())
-//     })
-//     .then(issues => res.status(200).json({ issues: issues }))
-//     .catch(next)
-// })
 
 module.exports = router
