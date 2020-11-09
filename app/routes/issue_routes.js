@@ -45,6 +45,16 @@ router.get('/issues', (req, res, next) => {
     .catch(next)
 })
 
+// Show all issues by current user
+router.get('/issues', (req, res, next) => {
+  Issue.find({owner: req.user.id})
+    .then(issues => {
+      return issues.map(issue => issue.toObject())
+    })
+    .then(issues => res.status(200).json({ issues: issues }))
+    .catch(next)
+})
+
 // Show one Issue
 router.get('/issues/:id', (req, res, next) => {
   Issue.findById(req.params.id)
