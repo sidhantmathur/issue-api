@@ -18,8 +18,7 @@ const issueSchema = new mongoose.Schema({
   },
   tag: {
     type: String,
-    enum: ['New', 'In Progress', 'Solved'],
-    default: ['New']
+    enum: ['New', 'In Progress', 'Solved']
   },
   comments: [commentSchema]
 }, {
