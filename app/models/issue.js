@@ -16,9 +16,11 @@ const issueSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
-  // tag: {
-  //   type: Number
-  // },
+  tag: {
+    type: String,
+    enum: ['New', 'In Progress', 'Solved'],
+    default: ['New']
+  },
   comments: [commentSchema]
 }, {
   timestamps: true
