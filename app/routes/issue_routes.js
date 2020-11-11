@@ -87,4 +87,19 @@ router.get('/issues-user', requireToken, (req, res, next) => {
     .catch(next)
 })
 
+router.get('/issues-tag/:tag', (req, res, next) => {
+  // console.log(req.user)
+  Issue.find({'tag': req.params.tag})
+    .then(handle404)
+    .then(issues => {
+      return issues.map(issue => {
+        return issue.toObject()
+      })
+    })
+    .then(issues => {
+      res.status(200).json({ issues: issues })
+    })
+    .catch(next)
+})
+
 module.exports = router
