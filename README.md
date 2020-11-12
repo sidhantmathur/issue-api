@@ -4,7 +4,7 @@ An issue tracking API with user authenticatioin, issue documents, comment sub-do
 
 ## Important Links
 
-- [Hosted Website Front-End](https://sidhantmathur.github.io/Auth-TicTacToe-client/)
+- [Hosted Website Front-End](https://sidhantmathur.github.io/issue-tracker-client/)
 - [Front-End Repo](https://github.com/sidhantmathur/issue-tracker-client)
 - [Heroku Hosted API](https://afternoon-beach-76578.herokuapp.com/)
 
