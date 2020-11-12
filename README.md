@@ -1,4 +1,5 @@
-# Issue API
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/sidhantmathur/issue-tracker-client/00c6b9d8dfbe7c43a347a918bbc9a8a311dd2891/public/logo.svg" width="100"></p>
+<h1 style="text-align: center;">Issue API</h1>
 
 An issue tracking API with user authenticatioin, issue documents, comment sub-documents, and authenticated access to updating/deleting documents and subdocuments.
 
