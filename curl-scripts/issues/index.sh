@@ -1,6 +1,6 @@
 #!/bin/sh
 
-API="http://localhost:4741"
+API="https://afternoon-beach-76578.herokuapp.com"
 URL_PATH="/issues"
 
 curl "${API}${URL_PATH}" \

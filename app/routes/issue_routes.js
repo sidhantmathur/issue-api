@@ -55,20 +55,6 @@ router.get('/issues/:id', (req, res, next) => {
     .catch(next)
 })
 
-// Update Issue
-router.patch('/issues/:id', requireToken, removeBlanks, (req, res, next) => {
-  delete req.body.issue.owner
-
-  Issue.findById(req.params.id)
-    .then(handle404)
-    .then(issue => {
-      requireOwnership(req, issue)
-      return issue.updateOne(req.body.issue)
-    })
-    .then(() => res.sendStatus(204))
-    .catch(next)
-})
-
 // Show User's Issues
 router.get('/issues-user', requireToken, (req, res, next) => {
   // console.log(req.user)
@@ -81,9 +67,23 @@ router.get('/issues-user', requireToken, (req, res, next) => {
       })
     })
     .then(issues => {
-      // console.log(issues)
+    // console.log(issues)
       res.status(200).json({ issues: issues })
     })
+    .catch(next)
+})
+
+// Update Issue
+router.patch('/issues/:id', requireToken, removeBlanks, (req, res, next) => {
+  delete req.body.issue.owner
+
+  Issue.findById(req.params.id)
+    .then(handle404)
+    .then(issue => {
+      requireOwnership(req, issue)
+      return issue.updateOne(req.body.issue)
+    })
+    .then(() => res.sendStatus(204))
     .catch(next)
 })
 
